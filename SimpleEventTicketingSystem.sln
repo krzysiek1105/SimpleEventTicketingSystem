@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.Infrastructure", "SimpleEventTicketingSystem.Infrastructure\SimpleEventTicketingSystem.Infrastructure.csproj", "{73A5AC1F-351A-4435-A625-4ED5A050F8FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.Application", "Application\SimpleEventTicketingSystem.Application.csproj", "{2AC68DE7-4279-4297-9205-0B6128417671}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.Application", "SimpleEventTicketingSystem.Application\SimpleEventTicketingSystem.Application.csproj", "{2AC68DE7-4279-4297-9205-0B6128417671}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

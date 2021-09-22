@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\SimpleEventTicketingSystem.Application.csproj" />
+    <ProjectReference Include="..\SimpleEventTicketingSystem.Application\SimpleEventTicketingSystem.Application.csproj" />
     <ProjectReference Include="..\SimpleEventTicketingSystem.Infrastructure\SimpleEventTicketingSystem.Infrastructure.csproj" />
   </ItemGroup>
 
