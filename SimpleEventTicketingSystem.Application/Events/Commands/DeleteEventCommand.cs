@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Application.Events.Commands
 {
@@ -12,9 +13,18 @@ namespace SimpleEventTicketingSystem.Application.Events.Commands
 
     public class DeleteEventCommandHandler : IRequestHandler<DeleteEventCommand>
     {
+        private readonly IEventsRepository _eventsRepository;
+
+        public DeleteEventCommandHandler(IEventsRepository eventsRepository)
+        {
+            _eventsRepository = eventsRepository;
+        }
+
         public Task<Unit> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            _eventsRepository.Delete(request.Id);
+
+            return Unit.Task;
         }
     }
 }
