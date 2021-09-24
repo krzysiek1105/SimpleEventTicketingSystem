@@ -4,12 +4,15 @@ using System.Collections.ObjectModel;
 
 namespace SimpleEventTicketingSystem.Domain
 {
-    public class Event
+    public class Event : Entity
     {
-        public Guid Id { get; }
         public int TicketPoolPoolCapacity { get; private set; }
         private readonly IList<Ticket> _tickets;
         public IReadOnlyCollection<Ticket> Tickets => new ReadOnlyCollection<Ticket>(_tickets);
+
+        protected Event()
+        {
+        }
 
         public Event(int ticketPoolCapacity)
         {
@@ -18,7 +21,6 @@ namespace SimpleEventTicketingSystem.Domain
                 throw new ArgumentException("Must be at least 1", nameof(ticketPoolCapacity));
             }
 
-            Id = Guid.NewGuid();
             TicketPoolPoolCapacity = ticketPoolCapacity;
             _tickets = new List<Ticket>(TicketPoolPoolCapacity);
         }

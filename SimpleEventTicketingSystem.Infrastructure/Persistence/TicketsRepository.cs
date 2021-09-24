@@ -3,9 +3,9 @@ using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Infrastructure.Persistence
 {
-    public class EventsRepository : CrudRepository<Event>, IEventsRepository
+    public class TicketsRepository : CrudRepository<Ticket>, ITicketsRepository
     {
-        public EventsRepository(DatabaseContext databaseContext) : base(databaseContext)
+        public TicketsRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
         }
     }

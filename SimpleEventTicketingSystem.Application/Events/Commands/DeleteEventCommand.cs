@@ -22,7 +22,7 @@ namespace SimpleEventTicketingSystem.Application.Events.Commands
 
         public Task<Unit> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
         {
-            _eventsRepository.Delete(request.Id);
+            _eventsRepository.Remove(request.Id);
 
             return Unit.Task;
         }

@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleEventTicketingSystem.Infrastructure.Persistence;
 
 namespace SimpleEventTicketingSystem.API
 {
@@ -7,7 +10,13 @@ namespace SimpleEventTicketingSystem.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var hostBuilder = CreateHostBuilder(args);
+            var host = hostBuilder.Build();
+
+            using var scope = host.Services.CreateScope();
+            scope.ServiceProvider.GetService<DatabaseContext>()?.Database.Migrate();
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -1,5 +1,8 @@
-﻿using MediatR;
+﻿using System;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SimpleEventTicketingSystem.Application.Events.Commands;
 
 namespace SimpleEventTicketingSystem.API.Controllers
 {
@@ -15,9 +18,12 @@ namespace SimpleEventTicketingSystem.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return Ok();
+            return Ok(await _mediator.Send(new CreateEventCommand
+            {
+                TicketPoolCapacity = new Random().Next(1, 16)
+            }));
         }
 
         [HttpDelete]

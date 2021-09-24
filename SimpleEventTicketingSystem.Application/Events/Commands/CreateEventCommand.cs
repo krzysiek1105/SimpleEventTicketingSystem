@@ -20,12 +20,13 @@ namespace SimpleEventTicketingSystem.Application.Events.Commands
             _eventsRepository = eventsRepository;
         }
 
-        public Task<Unit> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
             var @event = new Event(request.TicketPoolCapacity);
             _eventsRepository.Add(@event);
+            await _eventsRepository.SaveChangesAsync();
 
-            return Unit.Task;
+            return Unit.Value;
         }
     }
 }

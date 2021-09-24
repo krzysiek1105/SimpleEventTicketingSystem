@@ -1,6 +1,7 @@
 ﻿namespace SimpleEventTicketingSystem.Domain.Persistence
 {
-    public interface IEventsRepository : ICrudRepository<Event>
+    public interface ITicketsRepository : ICrudRepository<Ticket>
     {
+
     }
 }
