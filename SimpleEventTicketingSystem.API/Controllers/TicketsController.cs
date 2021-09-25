@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SimpleEventTicketingSystem.Application.Tickets.Commands;
 
 namespace SimpleEventTicketingSystem.API.Controllers
 {
@@ -14,9 +16,9 @@ namespace SimpleEventTicketingSystem.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create()
+        public async Task<IActionResult> Create(BuyTicketCommand buyTicketCommand)
         {
-            return Ok();
+            return Ok(await _mediator.Send(buyTicketCommand));
         }
 
         [HttpDelete]

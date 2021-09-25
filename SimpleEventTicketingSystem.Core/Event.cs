@@ -6,12 +6,13 @@ namespace SimpleEventTicketingSystem.Domain
 {
     public class Event : Entity
     {
-        public int TicketPoolPoolCapacity { get; private set; }
-        private readonly IList<Ticket> _tickets;
+        public int TicketPoolPoolCapacity { get; protected set; }
+        private List<Ticket> _tickets;
         public IReadOnlyCollection<Ticket> Tickets => new ReadOnlyCollection<Ticket>(_tickets);
 
         protected Event()
         {
+            _tickets = new List<Ticket>();
         }
 
         public Event(int ticketPoolCapacity)
@@ -42,7 +43,7 @@ namespace SimpleEventTicketingSystem.Domain
                 throw new InvalidOperationException("No tickets left for the event");
             }
 
-            var ticket = new Ticket(Id, firstName, lastName, email);
+            var ticket = new Ticket(this, firstName, lastName, email);
             _tickets.Add(ticket);
 
             return ticket;

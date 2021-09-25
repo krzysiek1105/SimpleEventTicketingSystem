@@ -1,24 +1,22 @@
-﻿using System;
-
-namespace SimpleEventTicketingSystem.Domain
+﻿namespace SimpleEventTicketingSystem.Domain
 {
     public class Ticket : Entity
     {
-        private readonly Guid _eventId;
-        private readonly string _firstName;
-        private readonly string _lastName;
-        private readonly string _email;
+        public Event Event { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
+        public string Email { get; protected set; }
 
         protected Ticket()
         {
         }
 
-        public Ticket(Guid eventId, string firstName, string lastName, string email)
+        public Ticket(Event @event, string firstName, string lastName, string email)
         {
-            _eventId = eventId;
-            _firstName = firstName;
-            _lastName = lastName;
-            _email = email;
+            Event = @event;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
         }
     }
 }

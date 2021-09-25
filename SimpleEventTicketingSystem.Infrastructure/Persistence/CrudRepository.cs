@@ -8,49 +8,49 @@ namespace SimpleEventTicketingSystem.Infrastructure.Persistence
 {
     public abstract class CrudRepository<T> where T : Entity
     {
-        private readonly DatabaseContext _databaseContext;
+        protected readonly DatabaseContext DatabaseContext;
 
         protected CrudRepository(DatabaseContext databaseContext)
         {
-            _databaseContext = databaseContext;
+            DatabaseContext = databaseContext;
         }
 
-        public void Add(T entity)
+        public virtual void Add(T entity)
         {
-            _databaseContext.Set<T>().Add(entity);
+            DatabaseContext.Set<T>().Add(entity);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
-            _databaseContext.Set<T>().Update(entity);
+            DatabaseContext.Set<T>().Update(entity);
         }
 
-        public T Get(Guid id)
+        public virtual T Get(Guid id)
         {
-            return _databaseContext.Set<T>().Find(id);
+            return DatabaseContext.Set<T>().Find(id);
         }
 
-        public IList<T> Get()
+        public virtual IList<T> Get()
         {
-            return _databaseContext.Set<T>().ToList();
+            return DatabaseContext.Set<T>().ToList();
         }
 
-        public void Remove(Guid id)
+        public virtual void Remove(Guid id)
         {
-            var set = _databaseContext.Set<T>();
+            var set = DatabaseContext.Set<T>();
             var entity = set.Find(id);
 
-            _databaseContext.Set<T>().Remove(entity);
+            DatabaseContext.Set<T>().Remove(entity);
         }
 
-        public void Remove(T entity)
+        public virtual void Remove(T entity)
         {
-            _databaseContext.Set<T>().Remove(entity);
+            DatabaseContext.Set<T>().Remove(entity);
         }
 
         public async Task<int> SaveChangesAsync()
         {
-            return await _databaseContext.SaveChangesAsync();
+            return await DatabaseContext.SaveChangesAsync();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Application.Tickets.Commands
 {
@@ -15,9 +16,24 @@ namespace SimpleEventTicketingSystem.Application.Tickets.Commands
 
     public class BuyTicketCommandHandler : IRequestHandler<BuyTicketCommand>
     {
-        public Task<Unit> Handle(BuyTicketCommand request, CancellationToken cancellationToken)
+        private readonly IEventsRepository _eventsRepository;
+        private readonly ITicketsRepository _ticketsRepository;
+
+        public BuyTicketCommandHandler(IEventsRepository eventsRepository, ITicketsRepository ticketsRepository)
         {
-            throw new System.NotImplementedException();
+            _eventsRepository = eventsRepository;
+            _ticketsRepository = ticketsRepository;
+        }
+
+        public async Task<Unit> Handle(BuyTicketCommand request, CancellationToken cancellationToken)
+        {
+            var @event = _eventsRepository.Get(request.EventId);
+            var ticket = @event.GetTicket(request.FirstName, request.LastName, request.Email);
+
+            _ticketsRepository.Add(ticket);
+
+            await _eventsRepository.SaveChangesAsync();
+            return Unit.Value;
         }
     }
 }

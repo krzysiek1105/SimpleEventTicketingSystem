@@ -9,7 +9,7 @@ using SimpleEventTicketingSystem.Infrastructure.Persistence;
 namespace SimpleEventTicketingSystem.Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210924172027_Init")]
+    [Migration("20210925081611_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,50 +19,52 @@ namespace SimpleEventTicketingSystem.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.10");
 
-            modelBuilder.Entity("SimpleEventTicketingSystem.Domain.Entity", b =>
+            modelBuilder.Entity("SimpleEventTicketingSystem.Domain.Event", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Entity");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Entity");
-                });
-
-            modelBuilder.Entity("SimpleEventTicketingSystem.Domain.Event", b =>
-                {
-                    b.HasBaseType("SimpleEventTicketingSystem.Domain.Entity");
-
                     b.Property<int>("TicketPoolPoolCapacity")
                         .HasColumnType("int");
 
-                    b.HasDiscriminator().HasValue("Event");
+                    b.HasKey("Id");
+
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("SimpleEventTicketingSystem.Domain.Ticket", b =>
                 {
-                    b.HasBaseType("SimpleEventTicketingSystem.Domain.Entity");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("longtext");
 
                     b.Property<Guid?>("EventId")
                         .HasColumnType("char(36)");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("EventId");
 
-                    b.HasDiscriminator().HasValue("Ticket");
+                    b.ToTable("Ticket");
                 });
 
             modelBuilder.Entity("SimpleEventTicketingSystem.Domain.Ticket", b =>
                 {
-                    b.HasOne("SimpleEventTicketingSystem.Domain.Event", null)
+                    b.HasOne("SimpleEventTicketingSystem.Domain.Event", "Event")
                         .WithMany("Tickets")
                         .HasForeignKey("EventId");
+
+                    b.Navigation("Event");
                 });
 
             modelBuilder.Entity("SimpleEventTicketingSystem.Domain.Event", b =>

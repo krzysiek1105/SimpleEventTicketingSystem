@@ -4,7 +4,7 @@ namespace SimpleEventTicketingSystem.Domain
 {
     public abstract class Entity
     {
-        public Guid Id { get; }
+        public virtual Guid Id { get; }
 
         protected Entity()
         {
