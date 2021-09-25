@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace SimpleEventTicketingSystem.Domain
@@ -19,7 +18,7 @@ namespace SimpleEventTicketingSystem.Domain
         {
             if (ticketPoolCapacity <= 0)
             {
-                throw new ArgumentException("Must be at least 1", nameof(ticketPoolCapacity));
+                throw new EventDomainException("Ticket pool must be at least 1");
             }
 
             TicketPoolPoolCapacity = ticketPoolCapacity;
@@ -30,7 +29,7 @@ namespace SimpleEventTicketingSystem.Domain
         {
             if (incrementValue <= 0)
             {
-                throw new ArgumentException("Must be at least 1", nameof(incrementValue));
+                throw new EventDomainException("Ticket pool increment value must be at least 1");
             }
 
             TicketPoolPoolCapacity += incrementValue;
@@ -40,7 +39,7 @@ namespace SimpleEventTicketingSystem.Domain
         {
             if (_tickets.Count >= TicketPoolPoolCapacity)
             {
-                throw new InvalidOperationException("No tickets left for the event");
+                throw new EventDomainException("No tickets left for the event");
             }
 
             var ticket = new Ticket(this, firstName, lastName, email);
@@ -53,7 +52,7 @@ namespace SimpleEventTicketingSystem.Domain
         {
             if (!_tickets.Contains(ticket))
             {
-                throw new InvalidOperationException("Ticket does not belong to the event");
+                throw new EventDomainException("Ticket does not belong to the event");
             }
 
             _tickets.Remove(ticket);

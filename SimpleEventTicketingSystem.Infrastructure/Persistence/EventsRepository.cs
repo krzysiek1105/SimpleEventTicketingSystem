@@ -14,7 +14,7 @@ namespace SimpleEventTicketingSystem.Infrastructure.Persistence
 
         public override Event Get(Guid id)
         {
-            return DatabaseContext.Set<Event>().Include(e => e.Tickets).Single(e => e.Id == id);
+            return DatabaseContext.Set<Event>().Include(e => e.Tickets).SingleOrDefault(e => e.Id == id) ?? throw new EntityDoesNotExistException($"{nameof(Event)} with id {id} does not exist");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SimpleEventTicketingSystem.Application.Tickets.Commands;
@@ -6,7 +7,7 @@ using SimpleEventTicketingSystem.Application.Tickets.Commands;
 namespace SimpleEventTicketingSystem.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class TicketsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -15,15 +16,22 @@ namespace SimpleEventTicketingSystem.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(BuyTicketCommand buyTicketCommand)
+        [HttpPost("events/{eventId}/tickets")]
+        public async Task<IActionResult> Create(Guid eventId, BuyTicketCommand buyTicketCommand)
         {
+            buyTicketCommand.EventId = eventId;
             return Ok(await _mediator.Send(buyTicketCommand));
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("events/{eventId}/tickets/{id}")]
+        public async Task<IActionResult> Delete(Guid eventId, Guid id)
         {
+            await _mediator.Send(new ReturnTicketCommand
+            {
+                EventId = eventId,
+                Id = id
+            });
+
             return Ok();
         }
     }

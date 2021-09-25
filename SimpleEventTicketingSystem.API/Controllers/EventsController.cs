@@ -18,18 +18,20 @@ namespace SimpleEventTicketingSystem.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(CreateEventCommand createEventCommand)
         {
-            return Ok(await _mediator.Send(new CreateEventCommand
-            {
-                TicketPoolCapacity = new Random().Next(1, 16)
-            }));
+            return Ok(await _mediator.Send(createEventCommand));
         }
 
-        [HttpDelete]
-        public IActionResult Delete()
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return Ok();
+            await _mediator.Send(new DeleteEventCommand
+            {
+                Id = id
+            });
+
+            return NoContent();
         }
     }
 }

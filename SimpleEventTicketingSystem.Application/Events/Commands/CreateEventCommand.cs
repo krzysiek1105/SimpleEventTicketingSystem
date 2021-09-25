@@ -6,12 +6,12 @@ using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Application.Events.Commands
 {
-    public class CreateEventCommand : IRequest
+    public class CreateEventCommand : IRequest<Event>
     {
         public int TicketPoolCapacity { get; set; }
     }
 
-    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand>
+    public class CreateEventCommandHandler : IRequestHandler<CreateEventCommand, Event>
     {
         private readonly IEventsRepository _eventsRepository;
 
@@ -20,13 +20,13 @@ namespace SimpleEventTicketingSystem.Application.Events.Commands
             _eventsRepository = eventsRepository;
         }
 
-        public async Task<Unit> Handle(CreateEventCommand request, CancellationToken cancellationToken)
+        public async Task<Event> Handle(CreateEventCommand request, CancellationToken cancellationToken)
         {
             var @event = new Event(request.TicketPoolCapacity);
             _eventsRepository.Add(@event);
             await _eventsRepository.SaveChangesAsync();
 
-            return Unit.Value;
+            return @event;
         }
     }
 }

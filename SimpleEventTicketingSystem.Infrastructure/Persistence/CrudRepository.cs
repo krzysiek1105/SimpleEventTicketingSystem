@@ -27,7 +27,7 @@ namespace SimpleEventTicketingSystem.Infrastructure.Persistence
 
         public virtual T Get(Guid id)
         {
-            return DatabaseContext.Set<T>().Find(id);
+            return DatabaseContext.Set<T>().Find(id) ?? throw new EntityDoesNotExistException($"{nameof(T)} with id {id} does not exist");
         }
 
         public virtual IList<T> Get()
