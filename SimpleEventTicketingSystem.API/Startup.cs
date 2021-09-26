@@ -29,7 +29,11 @@ namespace SimpleEventTicketingSystem.API
                 options.LowercaseQueryStrings = true;
             });
 
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new ExceptionFilter());
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SimpleEventTicketingSystem.API", Version = "v1" });
