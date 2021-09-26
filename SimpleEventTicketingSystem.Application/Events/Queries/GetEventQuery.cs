@@ -2,17 +2,16 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using SimpleEventTicketingSystem.Domain;
 using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Application.Events.Queries
 {
-    public class GetEventQuery : IRequest<Event>
+    public class GetEventQuery : IRequest<EventDetailResponse>
     {
         public Guid Id { get; set; }
     }
 
-    public class GetEventQueryHandler : IRequestHandler<GetEventQuery, Event>
+    public class GetEventQueryHandler : IRequestHandler<GetEventQuery, EventDetailResponse>
     {
         private readonly IEventsRepository _eventsRepository;
 
@@ -21,9 +20,16 @@ namespace SimpleEventTicketingSystem.Application.Events.Queries
             _eventsRepository = eventsRepository;
         }
 
-        public Task<Event> Handle(GetEventQuery request, CancellationToken cancellationToken)
+        public Task<EventDetailResponse> Handle(GetEventQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_eventsRepository.Get(request.Id));
+            var @event = _eventsRepository.Get(request.Id);
+
+            return Task.FromResult(new EventDetailResponse
+            {
+                Id = @event.Id,
+                TicketPoolCapacity = @event.TicketPoolPoolCapacity,
+                TicketsAvailable = @event.TicketPoolPoolCapacity - @event.Tickets.Count
+            });
         }
     }
 }

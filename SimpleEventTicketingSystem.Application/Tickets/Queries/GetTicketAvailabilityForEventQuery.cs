@@ -2,19 +2,39 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Application.Tickets.Queries
 {
-    public class GetTicketAvailabilityForEventQuery : IRequest
+    public class TicketAvailabilityForEventResponse
+    {
+        public Guid EventId { get; set; }
+        public int TicketsAvailable { get; set; }
+    }
+
+    public class GetTicketAvailabilityForEventQuery : IRequest<TicketAvailabilityForEventResponse>
     {
         public Guid EventId { get; set; }
     }
 
-    public class GetTicketAvailabilityForEventQueryHandler : IRequestHandler<GetPurchasedTicketsForEventQuery>
+    public class GetTicketAvailabilityForEventQueryHandler : IRequestHandler<GetTicketAvailabilityForEventQuery, TicketAvailabilityForEventResponse>
     {
-        public Task<Unit> Handle(GetPurchasedTicketsForEventQuery request, CancellationToken cancellationToken)
+        private readonly IEventsRepository _eventsRepository;
+
+        public GetTicketAvailabilityForEventQueryHandler(IEventsRepository eventsRepository)
         {
-            throw new NotImplementedException();
+            _eventsRepository = eventsRepository;
+        }
+
+        public Task<TicketAvailabilityForEventResponse> Handle(GetTicketAvailabilityForEventQuery request, CancellationToken cancellationToken)
+        {
+            var @event = _eventsRepository.Get(request.EventId);
+
+            return Task.FromResult(new TicketAvailabilityForEventResponse
+            {
+                EventId = @event.Id,
+                TicketsAvailable = @event.TicketPoolPoolCapacity - @event.Tickets.Count
+            });
         }
     }
 }

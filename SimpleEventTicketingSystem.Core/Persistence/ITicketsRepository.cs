@@ -2,6 +2,5 @@
 {
     public interface ITicketsRepository : ICrudRepository<Ticket>
     {
-
     }
 }
