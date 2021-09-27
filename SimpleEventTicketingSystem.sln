@@ -5,11 +5,16 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.API", "SimpleEventTicketingSystem.API\SimpleEventTicketingSystem.API.csproj", "{89AF5BFB-C6DA-46ED-8613-F1BFF61F9CB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.Domain", "SimpleEventTicketingSystem.Core\SimpleEventTicketingSystem.Domain.csproj", "{1A804C6D-08D0-4A46-8539-C0A02E997DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.Domain", "SimpleEventTicketingSystem.Core\SimpleEventTicketingSystem.Domain.csproj", "{1A804C6D-08D0-4A46-8539-C0A02E997DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.Infrastructure", "SimpleEventTicketingSystem.Infrastructure\SimpleEventTicketingSystem.Infrastructure.csproj", "{73A5AC1F-351A-4435-A625-4ED5A050F8FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.Infrastructure", "SimpleEventTicketingSystem.Infrastructure\SimpleEventTicketingSystem.Infrastructure.csproj", "{73A5AC1F-351A-4435-A625-4ED5A050F8FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleEventTicketingSystem.Application", "SimpleEventTicketingSystem.Application\SimpleEventTicketingSystem.Application.csproj", "{2AC68DE7-4279-4297-9205-0B6128417671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.Application", "SimpleEventTicketingSystem.Application\SimpleEventTicketingSystem.Application.csproj", "{2AC68DE7-4279-4297-9205-0B6128417671}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1EAA3016-951F-4F14-8D7B-3D3E2E3A9BF3}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
