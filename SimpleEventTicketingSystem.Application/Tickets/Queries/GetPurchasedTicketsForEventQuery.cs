@@ -10,6 +10,7 @@ namespace SimpleEventTicketingSystem.Application.Tickets.Queries
 {
     public class PurchasedTicketResponse
     {
+        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -44,6 +45,7 @@ namespace SimpleEventTicketingSystem.Application.Tickets.Queries
                 EventId = @event.Id,
                 Tickets = @event.Tickets.Select(ticket => new PurchasedTicketResponse
                 {
+                    Id = ticket.Id,
                     Email = ticket.Email,
                     FirstName = ticket.FirstName,
                     LastName = ticket.LastName
