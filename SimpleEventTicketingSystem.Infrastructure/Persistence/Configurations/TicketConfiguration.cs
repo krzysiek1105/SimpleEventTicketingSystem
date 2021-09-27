@@ -13,7 +13,7 @@ namespace SimpleEventTicketingSystem.Infrastructure.Persistence.Configurations
             builder.OwnsOne(ticket => ticket.Email).Property(email => email.Value).HasColumnName(nameof(Email)).IsRequired();
             builder.OwnsOne(ticket => ticket.FirstName).Property(firstName => firstName.Value).HasColumnName(nameof(FirstName)).IsRequired();
             builder.OwnsOne(ticket => ticket.LastName).Property(lastName => lastName.Value).HasColumnName(nameof(LastName)).IsRequired();
-            builder.HasOne(ticket => ticket.Event).WithMany(e => e.Tickets);
+            builder.HasOne(ticket => ticket.Event).WithMany(e => e.Tickets).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
