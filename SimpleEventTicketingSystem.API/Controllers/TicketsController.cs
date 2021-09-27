@@ -34,7 +34,7 @@ namespace SimpleEventTicketingSystem.API.Controllers
                 Id = id
             });
 
-            return Ok();
+            return NoContent();
         }
 
         [HttpGet("events/{eventId}/tickets")]

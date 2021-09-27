@@ -29,7 +29,7 @@ namespace SimpleEventTicketingSystem.Infrastructure.Persistence
 
         public virtual T Get(Guid id)
         {
-            return DatabaseContext.Set<T>().Find(id) ?? throw new EntityDoesNotExistException($"{nameof(T)} with id {id} does not exist");
+            return DatabaseContext.Set<T>().Find(id) ?? throw new EntityDoesNotExistException($"Entity with id {id} does not exist");
         }
 
         public virtual IList<T> Get()
@@ -41,6 +41,8 @@ namespace SimpleEventTicketingSystem.Infrastructure.Persistence
         {
             var set = DatabaseContext.Set<T>();
             var entity = set.Find(id);
+
+            if (entity == null) return;
 
             DatabaseContext.Set<T>().Remove(entity);
         }

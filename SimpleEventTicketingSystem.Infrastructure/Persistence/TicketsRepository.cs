@@ -1,5 +1,4 @@
-﻿using SimpleEventTicketingSystem.Domain;
-using SimpleEventTicketingSystem.Domain.Entities;
+﻿using SimpleEventTicketingSystem.Domain.Entities;
 using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Infrastructure.Persistence
