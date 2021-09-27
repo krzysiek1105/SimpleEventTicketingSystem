@@ -1,17 +1,20 @@
-﻿namespace SimpleEventTicketingSystem.Domain
+﻿using SimpleEventTicketingSystem.Domain.Exceptions;
+using SimpleEventTicketingSystem.Domain.ValueObjects;
+
+namespace SimpleEventTicketingSystem.Domain.Entities
 {
     public class Ticket : Entity
     {
         public Event Event { get; protected set; }
-        public string FirstName { get; protected set; }
-        public string LastName { get; protected set; }
-        public string Email { get; protected set; }
+        public FirstName FirstName { get; protected set; }
+        public LastName LastName { get; protected set; }
+        public Email Email { get; protected set; }
 
         protected Ticket()
         {
         }
 
-        public Ticket(Event @event, string firstName, string lastName, string email)
+        public Ticket(Event @event, FirstName firstName, LastName lastName, Email email)
         {
             Event = @event ?? throw new TicketDomainException("Event cannot be null");
             FirstName = firstName ?? throw new TicketDomainException("First name cannot be null");

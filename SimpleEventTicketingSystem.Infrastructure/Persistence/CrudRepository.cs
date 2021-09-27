@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SimpleEventTicketingSystem.Domain;
+using SimpleEventTicketingSystem.Domain.Entities;
+using SimpleEventTicketingSystem.Domain.Exceptions;
 
 namespace SimpleEventTicketingSystem.Infrastructure.Persistence
 {

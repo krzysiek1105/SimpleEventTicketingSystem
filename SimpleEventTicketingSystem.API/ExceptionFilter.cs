@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using SimpleEventTicketingSystem.Domain;
+using SimpleEventTicketingSystem.Domain.Exceptions;
 
 namespace SimpleEventTicketingSystem.API
 {
@@ -17,15 +17,9 @@ namespace SimpleEventTicketingSystem.API
 
                     context.ExceptionHandled = true;
                     break;
-                case TicketDomainException ticketDomainException:
+                case DomainException domainException:
                     context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    context.Result = new ObjectResult(ticketDomainException.Message);
-
-                    context.ExceptionHandled = true;
-                    break;
-                case EventDomainException eventDomainException:
-                    context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    context.Result = new ObjectResult(eventDomainException.Message);
+                    context.Result = new ObjectResult(domainException.Message);
 
                     context.ExceptionHandled = true;
                     break;

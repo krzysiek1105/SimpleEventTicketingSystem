@@ -46,9 +46,9 @@ namespace SimpleEventTicketingSystem.Application.Tickets.Queries
                 Tickets = @event.Tickets.Select(ticket => new PurchasedTicketResponse
                 {
                     Id = ticket.Id,
-                    Email = ticket.Email,
-                    FirstName = ticket.FirstName,
-                    LastName = ticket.LastName
+                    Email = ticket.Email.Value,
+                    FirstName = ticket.FirstName.Value,
+                    LastName = ticket.LastName.Value
                 })
             });
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleEventTicketingSystem.Domain
+namespace SimpleEventTicketingSystem.Domain.Entities
 {
     public abstract class Entity
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SimpleEventTicketingSystem.Domain
+namespace SimpleEventTicketingSystem.Domain.Exceptions
 {
     [Serializable]
-    public class EventDomainException : Exception
+    public class EventDomainException : DomainException
     {
         public EventDomainException()
         {

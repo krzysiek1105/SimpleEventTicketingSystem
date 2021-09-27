@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SimpleEventTicketingSystem.Domain;
+using SimpleEventTicketingSystem.Domain.Entities;
 
 namespace SimpleEventTicketingSystem.Infrastructure.Persistence.Configurations
 {

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using SimpleEventTicketingSystem.Domain.Exceptions;
+using SimpleEventTicketingSystem.Domain.ValueObjects;
 
-namespace SimpleEventTicketingSystem.Domain
+namespace SimpleEventTicketingSystem.Domain.Entities
 {
     public class Event : Entity
     {
@@ -35,7 +37,7 @@ namespace SimpleEventTicketingSystem.Domain
             TicketPoolPoolCapacity += incrementValue;
         }
 
-        public Ticket GetTicket(string firstName, string lastName, string email)
+        public Ticket GetTicket(FirstName firstName, LastName lastName, Email email)
         {
             if (_tickets.Count >= TicketPoolPoolCapacity)
             {

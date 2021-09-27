@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using SimpleEventTicketingSystem.Domain;
+using SimpleEventTicketingSystem.Domain.Entities;
 using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Application.Events.Commands

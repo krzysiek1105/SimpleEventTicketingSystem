@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using SimpleEventTicketingSystem.Domain;
+using SimpleEventTicketingSystem.Domain.Entities;
+using SimpleEventTicketingSystem.Domain.Exceptions;
 using SimpleEventTicketingSystem.Domain.Persistence;
 
 namespace SimpleEventTicketingSystem.Infrastructure.Persistence
