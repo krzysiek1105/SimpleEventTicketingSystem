@@ -37,7 +37,7 @@ The design follows the principles of onion architecture. That means it is divide
 ### SimpleEventTicketingSystem.API
 SimpleEventTicketingSystem.API is a standard ASP.Net Core application which provides REST API and Swagger UI for better testability. It contains two controllers that provide actions for the client to interact with the system. There is no logic in controllers. Due to the use of the mediator pattern, in controller method, an query/command object is created and then is sent to its handler, which is implemented in the application layer.
 ### SimpleEventTicketingSystem.Application
-This layer contains commands and queries and their corresponding handlers. There are several commands/queries in the project that are responsible for encapsulating individual business cases. In command/query handler, all necessary entities are retrieved from repositories that are required to perform business action. Business logic is then executed on the entities, resulting in the final storage of the results in the database. 
+This layer contains commands and queries and their corresponding handlers. There are several commands/queries in the project that are responsible for encapsulating individual business cases. In command/query handler, all necessary entities are retrieved from repositories that are required to perform business action. Business logic is then executed on the entities, which are finally written back to the database.
 ### SimpleEventTicketingSystem.Domain
 This layer contains entities, value objects and repository interfaces. It also contains custom domain exceptions and repository interfaces that implementation can be found in the infrastructure layer.
 ### SimpleEventTicketingSystem.Infrastructure
