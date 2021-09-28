@@ -5,7 +5,7 @@ namespace SimpleEventTicketingSystem.Domain.Entities
 {
     public class Ticket : Entity
     {
-        public Event Event { get; protected set; }
+        public virtual Event Event { get; protected set; }
         public FirstName FirstName { get; protected set; }
         public LastName LastName { get; protected set; }
         public Email Email { get; protected set; }

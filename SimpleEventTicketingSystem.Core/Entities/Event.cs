@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using SimpleEventTicketingSystem.Domain.Exceptions;
 using SimpleEventTicketingSystem.Domain.ValueObjects;
 
@@ -9,7 +10,7 @@ namespace SimpleEventTicketingSystem.Domain.Entities
     {
         public int TicketPoolPoolCapacity { get; protected set; }
         private List<Ticket> _tickets;
-        public IReadOnlyCollection<Ticket> Tickets => new ReadOnlyCollection<Ticket>(_tickets);
+        public virtual IReadOnlyCollection<Ticket> Tickets => new ReadOnlyCollection<Ticket>(_tickets);
 
         protected Event()
         {
@@ -39,7 +40,7 @@ namespace SimpleEventTicketingSystem.Domain.Entities
 
         public Ticket GetTicket(FirstName firstName, LastName lastName, Email email)
         {
-            if (_tickets.Count >= TicketPoolPoolCapacity)
+            if (Tickets.Count >= TicketPoolPoolCapacity)
             {
                 throw new EventDomainException("No tickets left for the event");
             }
@@ -52,7 +53,7 @@ namespace SimpleEventTicketingSystem.Domain.Entities
 
         public void ReturnTicket(Ticket ticket)
         {
-            if (!_tickets.Contains(ticket))
+            if (!Tickets.Contains(ticket))
             {
                 throw new EventDomainException("Ticket does not belong to the event");
             }
