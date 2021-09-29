@@ -15,24 +15,19 @@ namespace SimpleEventTicketingSystem.Application.Tickets.Commands
     public class ReturnTicketCommandHandler : IRequestHandler<ReturnTicketCommand>
     {
         private readonly IEventsRepository _eventsRepository;
-        private readonly ITicketsRepository _ticketsRepository;
 
-        public ReturnTicketCommandHandler(IEventsRepository eventsRepository, ITicketsRepository ticketsRepository)
+        public ReturnTicketCommandHandler(IEventsRepository eventsRepository)
         {
             _eventsRepository = eventsRepository;
-            _ticketsRepository = ticketsRepository;
         }
 
         public async Task<Unit> Handle(ReturnTicketCommand request, CancellationToken cancellationToken)
         {
             var @event = _eventsRepository.Get(request.EventId);
-            var ticket = _ticketsRepository.Get(request.Id);
 
-            @event.ReturnTicket(ticket);
+            @event.ReturnTicket(request.Id);
 
-            _ticketsRepository.Remove(ticket);
             _eventsRepository.Update(@event);
-
             await _eventsRepository.SaveChangesAsync();
             return Unit.Value;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using SimpleEventTicketingSystem.Domain.Exceptions;
@@ -51,9 +52,10 @@ namespace SimpleEventTicketingSystem.Domain.Entities
             return ticket;
         }
 
-        public void ReturnTicket(Ticket ticket)
+        public void ReturnTicket(Guid ticketId)
         {
-            if (!Tickets.Contains(ticket))
+            var ticket = Tickets.SingleOrDefault(t => t.Id == ticketId);
+            if (ticket == null)
             {
                 throw new EventDomainException("Ticket does not belong to the event");
             }
