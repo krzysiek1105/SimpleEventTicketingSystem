@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using SimpleEventTicketingSystem.Domain;
 using SimpleEventTicketingSystem.Domain.Entities;
 
 namespace SimpleEventTicketingSystem.Infrastructure.Persistence

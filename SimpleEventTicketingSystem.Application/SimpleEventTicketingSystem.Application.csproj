@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleEventTicketingSystem.Core\SimpleEventTicketingSystem.Domain.csproj" />
+    <ProjectReference Include="..\SimpleEventTicketingSystem.Domain\SimpleEventTicketingSystem.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.API", "SimpleEventTicketingSystem.API\SimpleEventTicketingSystem.API.csproj", "{89AF5BFB-C6DA-46ED-8613-F1BFF61F9CB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.Domain", "SimpleEventTicketingSystem.Core\SimpleEventTicketingSystem.Domain.csproj", "{1A804C6D-08D0-4A46-8539-C0A02E997DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.Domain", "SimpleEventTicketingSystem.Domain\SimpleEventTicketingSystem.Domain.csproj", "{1A804C6D-08D0-4A46-8539-C0A02E997DDC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEventTicketingSystem.Infrastructure", "SimpleEventTicketingSystem.Infrastructure\SimpleEventTicketingSystem.Infrastructure.csproj", "{73A5AC1F-351A-4435-A625-4ED5A050F8FE}"
 EndProject
