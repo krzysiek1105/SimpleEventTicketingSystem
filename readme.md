@@ -4,7 +4,7 @@ Create events, set up ticket pools.
 Book tickets and return them on demand.
 ## Getting started
 ### Prerequisites
-+ .NET 5
++ .NET 6
 + MySQL Database
 ### Configuration
 The first step is to build the project solution. It can be done with the dotnet command tool. Commands below assume present working directory being set to the root directory of the project.
